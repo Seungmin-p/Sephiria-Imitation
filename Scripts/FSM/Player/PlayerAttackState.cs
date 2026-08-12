@@ -10,7 +10,6 @@ namespace FSM.PlayerStates
     
         public override void OnEnter()
         {
-            Debug.Log("Entered PlayerAttackState");
             owner.ExecuteAttack();
         }
 
@@ -25,6 +24,8 @@ namespace FSM.PlayerStates
 
         public override void OnFixedUpdate()
         {
+            owner.PlayerAttackMove();
+            owner.PlayerAttackHitCheck();
         }
 
         public override void OnExit()

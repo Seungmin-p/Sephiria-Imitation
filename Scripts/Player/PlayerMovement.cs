@@ -5,9 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("플레이어 컴포넌트")]
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] Player player;
 
     [Header("플레이어 속성")]
-    [SerializeField] float moveSpeed = 5f; //이동 속도
     [SerializeField] float dashSpeed = 25f; //대시 속도
     [SerializeField] float dashDuration = 0.15f; //대시 지속 시간
     [SerializeField] float dashRechargeTime = 1f; //대시 쿨타임
@@ -40,13 +40,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //플레이어 대시 입력 받기
-    public void OnDash(InputAction.CallbackContext context, bool isDashing, Vector2 lookDirection)
+    public void OnDash(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        if(isDashing || currentDashCount <= 0) return;
+        if (player.IsDashing || currentDashCount <= 0) return;
 
         //이동 입력이 있다면 이동 방향, 아니라면 보고있는 방향
-        dashDirection = inputVec.sqrMagnitude > 0.01f ? inputVec.normalized : lookDirection;
+        dashDirection = inputVec.sqrMagnitude > 0.01f ? inputVec.normalized : player.LookDirection;
 
         currentDashCount--;
         dashActionTrigger = true;
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     //플레이어 움직임 처리 - 상태머신
     public void ExecuteMove()
     {
-        Vector2 nextVec = inputVec * (moveSpeed * Time.fixedDeltaTime);
+        Vector2 nextVec = inputVec * (player.Stats.MoveSpeed * Time.fixedDeltaTime);
         rb.MovePosition(rb.position + nextVec);
     }
 

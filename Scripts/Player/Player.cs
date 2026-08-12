@@ -12,10 +12,17 @@ public class Player : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement; //플레이어 이동처리용 스크립트
     [SerializeField] PlayerAttack playerAttack; //플레이어 공격처리용 스크립트
     [SerializeField] PlayerGuard playerGuard; //플레이어 방어처리용 스크립트
+    [SerializeField] PlayerStats playerStats; //플레이어 스탯
     
     [Header("상태머신 그래프")]
     [SerializeField] FSMRuntimeGraph movementGraph;
     [SerializeField] FSMRuntimeGraph actionGraph;
+    
+    //플레이어 스탯 프로퍼티
+    public PlayerStats Stats => playerStats;
+    
+    //플레이어 방향 프로퍼티
+    public Vector2 LookDirection => playerDirection.LookDirection;
     
     //===================== 상태 머신용 변수 =====================
     //상태머신들
@@ -68,13 +75,14 @@ public class Player : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if(IsAttacking || IsStrikeAttacking || IsDashAttacking)
-        {
-            playerAttack.PlayerAttackMove();
-        }
-        
         movementStateMachine.FixedUpdate();
         actionStateMachine.FixedUpdate();
+    }
+    
+    //플레이어 방향 적용 호출
+    public void ApplyDirection(Vector2 direction)
+    {
+        playerDirection.ApplyDirection(direction);
     }
 
     //=================================== 플레이어 이동 및 애니메이션 ===================================
@@ -87,7 +95,7 @@ public class Player : MonoBehaviour
     //플레이어 대시 입력 받기
     public void OnDash(InputAction.CallbackContext context)
     {
-        playerMovement.OnDash(context, IsDashing, playerDirection.LookDirection);
+        playerMovement.OnDash(context);
     }
     
     //플레이어 움직임 처리 - 상태머신
@@ -115,6 +123,12 @@ public class Player : MonoBehaviour
     public void SetDashFinishedCondition(bool value)
     {
         playerMovement.SetDashFinishedCondition(value);
+    }
+
+    //플레이어 공격 이동처리
+    public void PlayerAttackMove()
+    {
+        playerAttack.PlayerAttackMove();
     }
     
     //애니메이션 업데이트
@@ -203,6 +217,12 @@ public class Player : MonoBehaviour
     public void ClearAttackData()
     {
         playerAttack.ClearAttackData();
+    }
+    
+    //공격 판정(지속)
+    public void PlayerAttackHitCheck()
+    {
+        playerAttack.PlayerAttackHitCheck();
     }
     
     //=================================== 방어 ===================================

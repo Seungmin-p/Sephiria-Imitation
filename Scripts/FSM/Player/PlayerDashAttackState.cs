@@ -10,13 +10,18 @@ namespace FSM.PlayerStates
     
         public override void OnEnter()
         {
-            Debug.Log("Entered PlayerDashAttackState");
             owner.ExecuteDashAttack();
         }
 
         public override void OnUpdate()
         {
             CheckTransitions();
+        }
+        
+        public override void OnFixedUpdate()
+        {
+            owner.PlayerAttackMove();
+            owner.PlayerAttackHitCheck();
         }
 
         public override void OnExit()

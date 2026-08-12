@@ -7,11 +7,6 @@ namespace FSM.PlayerStates
         public PlayerIdleState(Player owner, StateMachine<Player> stateMachine) : base(owner, stateMachine)
         {
         }
-    
-        public override void OnEnter()
-        {
-            Debug.Log("Entering PlayerIdleState");
-        }
 
         public override void OnUpdate()
         {

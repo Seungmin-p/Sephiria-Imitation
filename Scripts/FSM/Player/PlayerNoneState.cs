@@ -7,11 +7,6 @@ namespace FSM.PlayerStates
         public PlayerNoneState(Player owner, StateMachine<Player> stateMachine) : base(owner, stateMachine)
         {
         }
-    
-        public override void OnEnter()
-        {
-            Debug.Log("Entered PlayerNoneState");
-        }
 
         public override void OnUpdate()
         {

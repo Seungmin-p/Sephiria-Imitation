@@ -10,7 +10,6 @@ namespace FSM.PlayerStates
     
         public override void OnEnter()
         {
-            Debug.Log("Entered PlayerGuardState");
             owner.ClearAttackData();
             owner.StartGuard();
         }

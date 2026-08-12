@@ -7,11 +7,6 @@ namespace FSM.PlayerStates
         public PlayerMoveState(Player owner, StateMachine<Player> stateMachine) : base(owner, stateMachine)
         {
         }
-    
-        public override void OnEnter()
-        {
-            Debug.Log("Entered PlayerMoveState");
-        }
 
         public override void OnUpdate()
         {

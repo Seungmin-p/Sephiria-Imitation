@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerGuard : MonoBehaviour
 {
     [Header("플레이어 컴포넌트")]
-    [SerializeField] PlayerDirection playerDirection;
+    [SerializeField] Player player;
 
     [Header("플레이어 장비")]
     [SerializeField] Animator equipmentAnimator;
@@ -21,7 +21,7 @@ public class PlayerGuard : MonoBehaviour
         if (context.performed)
         {
             isGuardHeld = true;
-            playerDirection.ApplyDirection(playerDirection.LookDirection);
+            player.ApplyDirection(player.LookDirection);
         }
         //떼면 방어 해제를 의미
         else if (context.canceled)

@@ -4,19 +4,20 @@ using UnityEngine.InputSystem;
 public class PlayerDirection : MonoBehaviour
 {
     [Header("각종 컴포넌트")]
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private SpriteRenderer playerRenderer;
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] SpriteRenderer playerRenderer;
+    [SerializeField] Camera mainCamera;
+    [SerializeField] Transform directionPivot; //플레이어 피벗용 객체
 
     [Header("플레이어 장비")]
-    [SerializeField] private Transform weaponHand;
-    [SerializeField] private Transform shieldHand;
+    [SerializeField] Transform weaponHand;
+    [SerializeField] Transform shieldHand;
 
     [Header("장비 위치")]
-    [SerializeField] private Vector2 weaponHandDownPosition = new(0.21f, 0.165f);
-    [SerializeField] private Vector2 shieldHandDownPosition = new(-0.23f, -0.175f);
-    [SerializeField] private Vector2 weaponHandUpPosition = new(0.26f, 0.27f);
-    [SerializeField] private Vector2 shieldHandUpPosition = new(-0.14f, -0.18f);
+    [SerializeField] Vector2 weaponHandDownPosition = new(0.21f, 0.165f);
+    [SerializeField] Vector2 shieldHandDownPosition = new(-0.23f, -0.175f);
+    [SerializeField] Vector2 weaponHandUpPosition = new(0.26f, 0.27f);
+    [SerializeField] Vector2 shieldHandUpPosition = new(-0.14f, -0.18f);
 
     private Vector2 lookDirection = Vector2.down;
 
@@ -32,7 +33,7 @@ public class PlayerDirection : MonoBehaviour
         Vector2 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mouseScreenPosition);
         
         //마우스의 좌표에서 플레이어의 좌표를 빼주고, 정규화
-        lookDirection = (mouseWorldPosition - rb.position).normalized;
+        lookDirection = (mouseWorldPosition - (Vector2)directionPivot.position).normalized;
     }
 
     //종합 방향 업데이트 메소드
@@ -68,7 +69,7 @@ public class PlayerDirection : MonoBehaviour
         weaponHand.localPosition = weaponPosition;
         shieldHand.localPosition = shieldPosition;
     }
-
+ 
     //마우스 위치에 따른 검 회전처리
     private void UpdateWeaponHandDirection(Vector2 direction)
     {
@@ -76,7 +77,7 @@ public class PlayerDirection : MonoBehaviour
         float referenceAngle = Mathf.Atan2(direction.y, Mathf.Abs(direction.x)) * Mathf.Rad2Deg;
         
         //클립에 따른 각도 보정
-        float handAngle = referenceAngle - 70f;
+        float handAngle = referenceAngle - 85f;
         
         bool isLookingLeft = direction.x < 0f;
         

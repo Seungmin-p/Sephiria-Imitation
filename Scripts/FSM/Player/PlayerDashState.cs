@@ -11,7 +11,6 @@ namespace FSM.PlayerStates
     
         public override void OnEnter()
         {
-            Debug.Log("Entered PlayerDashState");
             owner.DashActionTriggerDisable();
             dashTimer = owner.DashDuration;
             owner.SetDashFinishedCondition(false);

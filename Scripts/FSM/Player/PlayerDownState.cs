@@ -11,7 +11,6 @@ public class PlayerDownState : PlayerActionStateBase
     
     public override void OnEnter()
     {
-        Debug.Log("Entered PlayerDownState");
     }
 
     public override void OnUpdate()
