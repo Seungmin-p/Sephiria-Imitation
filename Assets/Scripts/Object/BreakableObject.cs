@@ -46,8 +46,8 @@ public class BreakableObject : MonoBehaviour, IDamageable
     //피격(파괴) 처리
     public DamageResult TakeDamage(AttackData attackData)
     {
-        //이미 파괴되었거나 플레이어의 공격이 아니라면 패스
-        if (isBroken || attackData.source != DamageSource.Player)
+        //이미 파괴되었으면 패스
+        if (isBroken)
         {
             return new DamageResult(
                 0f,
@@ -58,10 +58,10 @@ public class BreakableObject : MonoBehaviour, IDamageable
             );
         }
 
-        //패스되지 않았다면 파괴처리 진행
+        //파괴되지 않았다면 파괴처리 진행
         Break();
 
-        //피격 이벤트를 위한 ObjectHit 판정 반환
+        //이벤트를 위한 ObjectHit 판정 반환
         return new DamageResult(
             0f,
             false,

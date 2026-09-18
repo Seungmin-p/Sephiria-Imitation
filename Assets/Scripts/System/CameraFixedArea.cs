@@ -1,15 +1,12 @@
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class CameraFixedArea : MonoBehaviour
 {
     [Header("카메라")]
-    [SerializeField] private MainCamera mainCamera;
-    [SerializeField] private Transform fixedPoint; //카메라를 이동시킬 위치
-
-    [Header("이동 시간")]
-    [SerializeField] private float moveDuration = 0.2f;
+    [SerializeField] private CinemachineCamera fixedCamera;
 
     private readonly HashSet<Collider2D> playerColliders = new HashSet<Collider2D>();
 
@@ -23,9 +20,9 @@ public class CameraFixedArea : MonoBehaviour
         if (!playerColliders.Add(other) || playerColliders.Count != 1)
             return;
 
-        //카메라 위치 이동하기
-        if (mainCamera != null && fixedPoint != null)
-            mainCamera.EnterFixedArea(this, fixedPoint.position, moveDuration);
+        //고정 카메라 활성화
+        if (fixedCamera != null)
+            fixedCamera.gameObject.SetActive(true);
     }
 
     //콜라이더 영역에서 빠져나가면
@@ -35,15 +32,15 @@ public class CameraFixedArea : MonoBehaviour
         if (!playerColliders.Remove(other) || playerColliders.Count > 0)
             return;
 
-        //카메라가 플레이어를 다시 추적하도록 영역 탈출
-        if (mainCamera != null)
-            mainCamera.ExitFixedArea(this, moveDuration);
+        //고정 카메라 비활성화
+        if (fixedCamera != null)
+            fixedCamera.gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
-        if (mainCamera != null && playerColliders.Count > 0)
-            mainCamera.ExitFixedArea(this, moveDuration);
+        if (fixedCamera != null)
+            fixedCamera.gameObject.SetActive(false);
 
         playerColliders.Clear();
     }

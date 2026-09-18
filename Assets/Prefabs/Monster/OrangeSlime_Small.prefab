@@ -262,7 +262,7 @@ MonoBehaviour:
   hitStretchScale: 1.5
   hitStretchDuration: 0.1
   hitRecoverDuration: 0.1
-  hitStunDuration: 1
+  hitStunDuration: 0.2
   airborneDuration: 0.6
   airborneDistance: 1.5
   airborneHeight: 2
@@ -290,6 +290,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8743072235632731855}
     m_Modifications:
+    - target: {fileID: 242409628232352860, guid: 693941cb5123a534c85ee1e82b36efe5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 242409628232352860, guid: 693941cb5123a534c85ee1e82b36efe5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 242409628232352860, guid: 693941cb5123a534c85ee1e82b36efe5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1711835449
+      objectReference: {fileID: 0}
     - target: {fileID: 2090470654332068902, guid: 693941cb5123a534c85ee1e82b36efe5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

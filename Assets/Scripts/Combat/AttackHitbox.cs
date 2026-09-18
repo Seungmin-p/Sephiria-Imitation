@@ -32,33 +32,30 @@ public class AttackHitbox : MonoBehaviour
         AttackData attackData,
         System.Action<Vector2, DamageResult> onHit)
     {
+        //현재 트랜스폼에 오프셋까지 보정해서 월드 좌표로 변환
         Vector2 center = transform.TransformPoint(hitboxOffset);
 
+        //공격 대상 탐색
         Collider2D[] targets = Physics2D.OverlapBoxAll(
             center,
             hitboxSize,
             transform.eulerAngles.z,
             targetLayer
         );
-
-        bool includesBreakable = (targetLayer.value & LayerMask.GetMask("BreakableObject")) != 0;
-
-        Debug.Log(
-            $"공격 판정 실행 / 감지 수: {targets.Length} / " +
-            $"BreakableObject 포함: {includesBreakable}"
-        );
-
+        
         foreach (Collider2D target in targets)
         {
+            //IDamageable 인터페이스를 구현한 객체 확보 시도
             IDamageable damageable = target.GetComponentInParent<IDamageable>();
 
-            //공격 가능한 대상이 아니거나 이미 적중한 대상이라면 제외
+            //공격 가능한 대상이 아니거나 이미 공격한 대상이라면 제외
             if (damageable == null || hitTargets.Contains(damageable))
                 continue;
 
+            //유의미한 대상이라면 목록에 추가
             hitTargets.Add(damageable);
             
-            //실제 타격 위치
+            //실제 타격 위치 확보
             Vector2 hitPosition = target.ClosestPoint(center);
             
             //공격 결과

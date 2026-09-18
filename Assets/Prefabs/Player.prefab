@@ -444,9 +444,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3205425334f66439b7d030a1758a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  maxHealth: 15
+  maxHealth: 100
   maxMana: 50
-  manaRegen: 0
+  manaRegen: 3
   physicalAttackPower: 20
   fireAttackPower: 0
   iceAttackPower: 0
@@ -586,6 +586,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHit
   player: {fileID: 211281865064767050}
   cameraController: {fileID: 0}
+  cameraImpulseSource: {fileID: 0}
+  hitShakeStrength: 0.25
   postProcessingVolume: {fileID: 0}
   hitVignetteIntensity: 0.6
   hitVignetteDuration: 0.33
@@ -1558,6 +1560,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9059473028356844831}
     m_Modifications:
+    - target: {fileID: 242409628232352860, guid: 693941cb5123a534c85ee1e82b36efe5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 242409628232352860, guid: 693941cb5123a534c85ee1e82b36efe5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 242409628232352860, guid: 693941cb5123a534c85ee1e82b36efe5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1711835449
+      objectReference: {fileID: 0}
     - target: {fileID: 2090470654332068902, guid: 693941cb5123a534c85ee1e82b36efe5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

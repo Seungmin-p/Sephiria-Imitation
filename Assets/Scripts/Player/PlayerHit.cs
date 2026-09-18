@@ -6,7 +6,7 @@ public class PlayerHit : MonoBehaviour, IDamageable
 {
     [Header("플레이어")]
     [SerializeField] Player player;
-    [SerializeField] MainCamera cameraController;
+    [SerializeField] CameraHitShake cameraController;
     
     [Header("피격 연출")]
     [SerializeField] private Volume postProcessingVolume;

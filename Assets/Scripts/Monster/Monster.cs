@@ -31,7 +31,7 @@ public class Monster : MonoBehaviour, IDamageable
     [SerializeField] protected float hitStretchScale = 1.5f;
     [SerializeField] protected float hitStretchDuration = 0.1f;
     [SerializeField] protected float hitRecoverDuration = 0.1f;
-    [SerializeField] protected float hitStunDuration = 1f; //피격 후 경직
+    [SerializeField] protected float hitStunDuration = 0.2f; //피격 후 경직
 
     [Header("에어본 연출")] 
     [SerializeField] protected float airborneDuration = 0.6f;
@@ -154,10 +154,21 @@ public class Monster : MonoBehaviour, IDamageable
     }
     
     //===================== 이동 및 방향, 기타 =====================
-    //특정 애니메이션 플레이
+    //애니메이션 플레이
     public void PlayAnimation(string animationName)
     {
         animator.Play(animationName);
+    }
+    
+    //애니메이션 플레이 시도
+    public void TryPlayAnimation(string stateName)
+    {
+        int hash = Animator.StringToHash(stateName);
+
+        if (animator.HasState(0, hash))
+            animator.Play(hash);
+        else
+            animator.Play("Idle");
     }
 
     //플레이어가 탐지 범위 내에 존재하는지 확인
@@ -193,7 +204,15 @@ public class Monster : MonoBehaviour, IDamageable
     {
         if (target == null) return;
 
-        spriteRenderer.flipX = target.position.x < transform.position.x;
+        //방향 전환이 필요한지 체크
+        bool shouldFlip = target.position.x < transform.position.x;
+        if (spriteRenderer.flipX == shouldFlip) return;
+
+        //방향 및 그림자 x축 반전 진행
+        spriteRenderer.flipX = shouldFlip;
+
+        if (shadow != null)
+            shadow.FlipXPosition();
     }
     
     //딜레이용 Idle 유지 시간 지정
@@ -245,6 +264,18 @@ public class Monster : MonoBehaviour, IDamageable
     protected void UpdateShieldMaterial()
     {
         spriteRenderer.material = HasShield ? shieldMaterial : defaultMaterial;
+    }
+    
+    //이동 관성 초기화
+    public void ResetMoveDirection()
+    {
+        if (target == null)
+        {
+            currentMoveDirection = Vector2.zero;
+            return;
+        }
+
+        currentMoveDirection = ((Vector2)target.position - rb.position).normalized;
     }
 
     //===================== 피격 및 사망 로직 =====================

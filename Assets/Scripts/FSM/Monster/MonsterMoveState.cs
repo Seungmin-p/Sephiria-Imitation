@@ -8,6 +8,8 @@ namespace FSM.MonsterStates
         
         public override void OnEnter()
         {
+            //관성 초기화 진행
+            owner.ResetMoveDirection();
             owner.PlayAnimation("Move");
         }
 

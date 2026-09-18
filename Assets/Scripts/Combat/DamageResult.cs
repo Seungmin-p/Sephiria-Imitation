@@ -2,7 +2,7 @@ public struct DamageResult
 {
     public enum HitResultType
     {
-        Ignored, //사망 시 판정 무시에 사용
+        Ignored, //사망 혹은 파괴상태 등 판정 무시에 사용
         Hit,
         Evade,
         Guard,
