@@ -29,8 +29,7 @@ public class ChargeMonster : Monster
     [SerializeField] float outerStartOffset = 0.1f;
     [SerializeField] float warningStartLength = 1.5f;
     [SerializeField] float warningEndLength = 3f;
-
-
+    
     private float attackTimer;
     private Vector2 attackStartPosition;
     private Vector2 attackEndPosition;
@@ -104,6 +103,25 @@ public class ChargeMonster : Monster
             rightEnd,
             warningStartLength,
             warningEndLength);
+    }
+    
+    private void GetWarningLinePositions(
+        out Vector3 leftOuterStart,
+        out Vector3 leftInnerStart,
+        out Vector3 rightInnerStart,
+        out Vector3 rightOuterStart,
+        out Vector3 leftEnd,
+        out Vector3 rightEnd)
+    {
+        float halfWidth = warningWidth * 0.5f;
+
+        leftEnd = new Vector3(-halfWidth, 0f, 0f);
+        rightEnd = new Vector3(halfWidth, 0f, 0f);
+
+        leftOuterStart = leftEnd + Vector3.left * outerStartOffset;
+        leftInnerStart = leftEnd + Vector3.right * innerStartOffset;
+        rightInnerStart = rightEnd + Vector3.left * innerStartOffset;
+        rightOuterStart = rightEnd + Vector3.right * outerStartOffset;
     }
     
     //공격 준비(차징)
@@ -268,25 +286,6 @@ public class ChargeMonster : Monster
         //실제 공격 판정
         if (attackHitbox != null)
             attackHitbox.DrawHitboxGizmo(attackHitboxSize, attackHitboxOffset);
-    }
-
-    private void GetWarningLinePositions(
-        out Vector3 leftOuterStart,
-        out Vector3 leftInnerStart,
-        out Vector3 rightInnerStart,
-        out Vector3 rightOuterStart,
-        out Vector3 leftEnd,
-        out Vector3 rightEnd)
-    {
-        float halfWidth = warningWidth * 0.5f;
-
-        leftEnd = new Vector3(-halfWidth, 0f, 0f);
-        rightEnd = new Vector3(halfWidth, 0f, 0f);
-
-        leftOuterStart = leftEnd + Vector3.left * outerStartOffset;
-        leftInnerStart = leftEnd + Vector3.right * innerStartOffset;
-        rightInnerStart = rightEnd + Vector3.left * innerStartOffset;
-        rightOuterStart = rightEnd + Vector3.right * outerStartOffset;
     }
 
     private void DrawWarningLineGizmo(Vector3 startPosition, Vector3 endPosition)

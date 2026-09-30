@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] PlayerGuard playerGuard; //플레이어 방어처리용 스크립트
     [SerializeField] PlayerDeath playerDeath; //플레이어 사망처리용 스크립트
     [SerializeField] PlayerStats playerStats; //플레이어 스탯
+    [SerializeField] PlayerInvincibility playerInvincibility; //플레이어 무적 처리용
     [SerializeField] StatusEffectController statusEffect; //버프, 디버프 관리용
     
     [Header("상태머신 그래프")]
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     public PlayerStats Stats => playerStats;
     public StatusEffectController StatusEffect => statusEffect;
     public Vector2 LookDirection => playerDirection.LookDirection;
+    public bool IsInvincible => playerInvincibility.IsInvincible; //무적 여부
     
     //===================== 상태 머신용 변수 =====================
     //상태머신들
@@ -288,5 +290,11 @@ public class Player : MonoBehaviour
     public void OnGuardingEnd()
     {
         playerGuard.OnGuardingEnd();
+    }
+    
+    //플레이어 무적 적용 호출
+    public void SetInvincibility(float duration)
+    {
+        playerInvincibility.SetInvincibility(duration);
     }
 }

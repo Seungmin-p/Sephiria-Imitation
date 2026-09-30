@@ -36,5 +36,12 @@ namespace FSM.MonsterStates
                 stateMachine.ChangeState(owner.MoveState);
             }
         }
+        
+        public override void OnFixedUpdate()
+        {
+            //만약 Idle 대기 시간이 남아있으면 전용 처리
+            if (owner.IsIdleLocked)
+                owner.ExecuteIdleLockMovement();
+        }
     }
 }

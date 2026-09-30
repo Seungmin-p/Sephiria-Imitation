@@ -36,6 +36,18 @@ public class PlayerHit : MonoBehaviour, IDamageable
             );
         }
         
+        //무적 상태라면 피격 패스
+        if (player.IsInvincible)
+        {
+            return new DamageResult(
+                0f,
+                attackData.isCritical,
+                DamageResult.HitResultType.Ignored,
+                attackData.element,
+                attackData.source
+            );
+        }
+        
         //회피 판정
         if (IsEvaded())
         {
@@ -60,6 +72,9 @@ public class PlayerHit : MonoBehaviour, IDamageable
 
         //HP 감소
         player.Stats.ReduceHealth(finalDamage);
+        
+        //피격 무적 적용
+        player.SetInvincibility(player.Stats.HitInvincibilityDuration);
         
         //플레이어 피격 연출
         PlayerHitVisual();

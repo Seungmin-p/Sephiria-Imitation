@@ -8,7 +8,7 @@ namespace FSM.MonsterStates
 
         public override void OnEnter()
         {
-            owner.PlayAnimation("Attack");
+            owner.PlayAttackAnimation();
             owner.StartAttack();
         }
 

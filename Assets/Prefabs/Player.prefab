@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 4956499283561881473}
   - component: {fileID: 7487172644261470131}
   - component: {fileID: 704767359872818461}
+  - component: {fileID: 4754251510295554833}
   - component: {fileID: 6882216132522856671}
   - component: {fileID: 5853866533121677591}
   - component: {fileID: 2968844291459881172}
@@ -429,6 +430,7 @@ MonoBehaviour:
   playerGuard: {fileID: 4956499283561881473}
   playerDeath: {fileID: 704767359872818461}
   playerStats: {fileID: 7915063328097749707}
+  playerInvincibility: {fileID: 4754251510295554833}
   statusEffect: {fileID: 5853866533121677591}
   movementGraph: {fileID: 2841676755933307327, guid: 558eb3cecc40ddb48a821ae06091038e, type: 3}
   actionGraph: {fileID: 2841676755933307327, guid: 4c232cf58244f924198420a464989733, type: 3}
@@ -453,6 +455,7 @@ MonoBehaviour:
   electricAttackPower: 0
   defense: 0
   evasion: 0
+  hitInvincibilityDuration: 0.2
   criticalChance: 0.5
   criticalDamage: 1.5
   baseAttackSpeed: 1
@@ -586,8 +589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHit
   player: {fileID: 211281865064767050}
   cameraController: {fileID: 0}
-  cameraImpulseSource: {fileID: 0}
-  hitShakeStrength: 0.25
   postProcessingVolume: {fileID: 0}
   hitVignetteIntensity: 0.6
   hitVignetteDuration: 0.33
@@ -615,6 +616,18 @@ MonoBehaviour:
   airborneHeight: 1.5
   gameOverDelay: 2
   deathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &4754251510295554833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335696440488233495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ed59cb404d2bd41a6092e7ce15cd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInvincibility
 --- !u!114 &6882216132522856671
 MonoBehaviour:
   m_ObjectHideFlags: 0

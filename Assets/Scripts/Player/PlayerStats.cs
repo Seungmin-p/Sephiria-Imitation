@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     [Header("방어 능력치")]
     [SerializeField] private int defense; //방어력
     [SerializeField] private int evasion; //회피
+    [SerializeField] private float hitInvincibilityDuration = 0.2f; //피격 후 무적 시간
 
     [Header("치명타 능력치")]
     [SerializeField] private float criticalChance; //치명타 확률
@@ -51,6 +52,7 @@ public class PlayerStats : MonoBehaviour
 
     public int Defense => defense;
     public int Evasion => evasion;
+    public float HitInvincibilityDuration => hitInvincibilityDuration; //피격 무적
 
     public float CriticalChance => criticalChance;
     public float CriticalDamage => criticalDamage;

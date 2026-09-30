@@ -8,4 +8,9 @@ public class MonsterAnimationEventReceiver : MonoBehaviour
     {
         monster.OnDeathAnimationEnd();
     }
+
+    public void OnAttackPrepareCue()
+    {
+        monster.OnAttackPrepareCue();
+    }
 }

@@ -14,6 +14,7 @@ namespace FSM.PlayerStates
             owner.DashActionTriggerDisable();
             dashTimer = owner.DashDuration;
             owner.SetDashFinishedCondition(false);
+            owner.SetInvincibility(owner.DashDuration); //대시무적 적용
         }
 
         public override void OnUpdate()

@@ -198,6 +198,21 @@ public class Monster : MonoBehaviour, IDamageable
 
         UpdateSpriteDirection();
     }
+    
+    //플레이어 반대 방향으로 이동
+    protected void MoveAwayFromTarget()
+    {
+        if (target == null) return;
+
+        //플레이어의 정 반대방향
+        Vector2 moveDirection = (rb.position - (Vector2)target.position).normalized;
+        Vector2 velocity = moveDirection * moveSpeed;
+
+        rb.Slide(velocity, Time.fixedDeltaTime, slideMovement);
+
+        //이동 방향과 관계없이 플레이어 방향을 바라봄
+        UpdateSpriteDirection();
+    }
 
     //방향 전환
     public void UpdateSpriteDirection()
@@ -221,6 +236,11 @@ public class Monster : MonoBehaviour, IDamageable
         idleLockTimer = duration;
     }
     
+    //도망용 메소드
+    public virtual void ExecuteIdleLockMovement()
+    {
+    }
+    
     //===================== 공격 로직 =====================
     //공격 가능 여부
     public virtual bool CanAttack()
@@ -230,6 +250,11 @@ public class Monster : MonoBehaviour, IDamageable
 
     //공격 준비 시작
     public virtual void StartAttackPrepare()
+    {
+    }
+
+    //공격 준비 애니메이션 이벤트
+    public virtual void OnAttackPrepareCue()
     {
     }
 
@@ -276,6 +301,12 @@ public class Monster : MonoBehaviour, IDamageable
         }
 
         currentMoveDirection = ((Vector2)target.position - rb.position).normalized;
+    }
+    
+    //공격 애니메이션 호출 시도
+    public virtual void PlayAttackAnimation()
+    {
+        PlayAnimation("Attack");
     }
 
     //===================== 피격 및 사망 로직 =====================
