@@ -17,9 +17,6 @@ public class Slime : Monster
     [Header("사망 파티클")]
     [SerializeField] FragmentEffect fragmentPrefab;
     [SerializeField] int fragmentCount = 3;
-
-    [Header("기타")]
-    [SerializeField] int contactDamage = 5;
     
     private bool isSplitSpawn;
     private bool isSpawnWaiting;
@@ -35,7 +32,7 @@ public class Slime : Monster
             if (damageable == null) return;
 
             AttackData attackData = new(
-                contactDamage,
+                attackDamage,
                 ((Vector2)other.transform.position - rb.position).normalized,
                 false,
                 ElementType.Physical,

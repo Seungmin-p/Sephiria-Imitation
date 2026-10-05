@@ -410,6 +410,8 @@ MonoBehaviour:
   defense: 0
   maxShield: 0
   shieldAbsorbRate: 0.35
+  attackDamage: 9
+  attackCooldown: 2
   hitStretchScale: 1.5
   hitStretchDuration: 0.1
   hitRecoverDuration: 0.1
@@ -429,7 +431,6 @@ MonoBehaviour:
   attackHitboxOffset: {x: 0, y: 0.68}
   attackDistance: 3.8
   attackMoveDistance: 3.3
-  attackDamage: 9
   attackDuration: 0.3
   attackPrepareDuration: 0.5
   attackEndDelay: 2

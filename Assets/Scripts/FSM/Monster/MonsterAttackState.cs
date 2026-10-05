@@ -18,7 +18,7 @@ namespace FSM.MonsterStates
             if (owner.ExecuteAttack())
             {
                 //공격 후딜레이 적용
-                owner.StartAttackEndDelay();
+                owner.ApplyAttackEndDelay();
                 stateMachine.ChangeState(owner.IdleState);
                 return;
             }

@@ -259,6 +259,8 @@ MonoBehaviour:
   defense: 0
   maxShield: 0
   shieldAbsorbRate: 0.35
+  attackDamage: 3
+  attackCooldown: 0.1
   hitStretchScale: 1.5
   hitStretchDuration: 0.1
   hitRecoverDuration: 0.1
@@ -281,7 +283,6 @@ MonoBehaviour:
   splitWaitDuration: 0.9
   fragmentPrefab: {fileID: 2110081639076289806, guid: 3d3f074f30efabe498eafe56ebcbf7e6, type: 3}
   fragmentCount: 3
-  contactDamage: 3
 --- !u!1001 &802376962659858116
 PrefabInstance:
   m_ObjectHideFlags: 0

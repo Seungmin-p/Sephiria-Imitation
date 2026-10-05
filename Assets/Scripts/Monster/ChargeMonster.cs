@@ -9,7 +9,6 @@ public class ChargeMonster : Monster
     [SerializeField] Vector2 attackHitboxOffset = new Vector2(0f, 1f);
     [SerializeField] float attackDistance = 3f; //공격 시작 사거리
     [SerializeField] float attackMoveDistance = 2.4f; //공격하면서 이동할 거리
-    [SerializeField] int attackDamage = 10;
     [SerializeField] float attackDuration = 0.3f;
     [SerializeField] float attackPrepareDuration = 0.45f;
     [SerializeField] private float attackEndDelay = 1.5f; //공격 후 딜레이
@@ -39,8 +38,8 @@ public class ChargeMonster : Monster
 
     public override bool CanAttack()
     {
-        if (target == null)
-            return false;
+        //타겟이 없거나, 공격이 불가능한 상태면 패스
+        if (target == null || !base.CanAttack()) return false;
 
         //플레이어가 공격 사거리내에 있는지 확인해서 bool 반환
         return Vector2.Distance(transform.position, target.position) <= attackDistance;
@@ -144,6 +143,8 @@ public class ChargeMonster : Monster
     //공격 시작
     public override void StartAttack()
     {
+        base.StartAttack();
+        
         //공격 타이머 초기화
         attackTimer = 0f;
 
@@ -216,7 +217,7 @@ public class ChargeMonster : Monster
     }
     
     //공격 이후 딜레이 시간 지정
-    public override void StartAttackEndDelay()
+    public override void ApplyAttackEndDelay()
     {
         // animator.Play("AttackEnd");
         StartIdleLock(attackEndDelay);

@@ -26,6 +26,10 @@ public class Monster : MonoBehaviour, IDamageable
     [SerializeField] protected int defense; //방어력
     [SerializeField] protected float maxShield; //보호막
     [SerializeField, Range(0f, 1f)] protected float shieldAbsorbRate = 0.35f; //보호막 데미지 비율
+    
+    [Header("공격 관련")]
+    [SerializeField] protected float attackDamage = 10f;
+    [SerializeField] protected float attackCooldown = 1f;
 
     [Header("피격 연출")] 
     [SerializeField] protected float hitStretchScale = 1.5f;
@@ -64,6 +68,7 @@ public class Monster : MonoBehaviour, IDamageable
     protected float downTimer;
     protected bool isDown;
     protected Rigidbody2D.SlideMovement slideMovement;
+    protected float attackCooldownTimer; //공격 쿨타임, 후딜레이랑은 별도로 같이 돌아감
 
     //에어본
     protected float airborneTimer;
@@ -147,8 +152,9 @@ public class Monster : MonoBehaviour, IDamageable
 
     protected virtual void FixedUpdate()
     {
-        if (idleLockTimer > 0f)
-            idleLockTimer -= Time.fixedDeltaTime;
+        //후딜레이, 공격 쿨타임 감소
+        if (idleLockTimer > 0f) idleLockTimer -= Time.fixedDeltaTime;
+        if (attackCooldownTimer > 0f) attackCooldownTimer -= Time.fixedDeltaTime;
         
         stateMachine.FixedUpdate();
     }
@@ -200,7 +206,7 @@ public class Monster : MonoBehaviour, IDamageable
     }
     
     //플레이어 반대 방향으로 이동
-    protected void MoveAwayFromTarget()
+    protected virtual void MoveAwayFromTarget()
     {
         if (target == null) return;
 
@@ -245,7 +251,7 @@ public class Monster : MonoBehaviour, IDamageable
     //공격 가능 여부
     public virtual bool CanAttack()
     {
-        return false;
+        return !(attackCooldownTimer > 0f);
     }
 
     //공격 준비 시작
@@ -254,7 +260,7 @@ public class Monster : MonoBehaviour, IDamageable
     }
 
     //공격 준비 애니메이션 이벤트
-    public virtual void OnAttackPrepareCue()
+    public virtual void ShowAttackWarning()
     {
     }
 
@@ -267,6 +273,8 @@ public class Monster : MonoBehaviour, IDamageable
     //공격 시작
     public virtual void StartAttack()
     {
+        //공격 쿨타임 적용
+        attackCooldownTimer = attackCooldown;
     }
 
     //공격 진행
@@ -275,8 +283,13 @@ public class Monster : MonoBehaviour, IDamageable
         return false;
     }
     
+    //공격 종료
+    public virtual void AttackEnd()
+    {
+    }
+    
     //공격 후딜레이 지정
-    public virtual void StartAttackEndDelay()
+    public virtual void ApplyAttackEndDelay()
     {
     }
     

@@ -178,6 +178,8 @@ MonoBehaviour:
   defense: 0
   maxShield: 0
   shieldAbsorbRate: 0.35
+  attackDamage: 8
+  attackCooldown: 1.5
   hitStretchScale: 1.5
   hitStretchDuration: 0.1
   hitRecoverDuration: 0.1
@@ -197,12 +199,12 @@ MonoBehaviour:
   attackHitboxOffset: {x: 0, y: 0.5}
   attackDistance: 3
   attackMoveDistance: 2.4
-  attackDamage: 10
   attackDuration: 0.3
   attackPrepareDuration: 0.45
   attackEndDelay: 1.5
   attackEffectOffset: 0.5
   attackWarning: {fileID: 4200280928444820098}
+  warningOffset: {x: 0, y: 0}
   leftOuter: {fileID: 2383584758227253815}
   leftInner: {fileID: 1012633065706003059}
   rightInner: {fileID: 1919018050643650151}

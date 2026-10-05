@@ -3,7 +3,7 @@ using UnityEngine;
 namespace FSM.PlayerStates
 {
     public class PlayerDashState : PlayerMovementStateBase
-    {   
+    {
         private float dashTimer;
         public PlayerDashState(Player owner, StateMachine<Player> stateMachine) : base(owner, stateMachine)
         {
