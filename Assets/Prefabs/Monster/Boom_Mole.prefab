@@ -124,9 +124,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1876334080936029747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a884492b6089b204cb8651101e18eef1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4baf8819c63c6d64c8168ab25f977cdc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimationEffect
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationSimpleController
 --- !u!1 &2119090782758095556
 GameObject:
   m_ObjectHideFlags: 0

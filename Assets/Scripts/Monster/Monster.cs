@@ -96,10 +96,13 @@ public class Monster : MonoBehaviour, IDamageable
     public MonsterAttackPrepareState AttackPrepareState => attackPrepareState;
     public MonsterDownState DownState => downState;
 
+    public Vector3 ShadowPosition => shadow.transform.position; //그림자 위치
     public float KnockbackDuration => knockbackDuration;
     public bool HasShield => currentShield > 0f;
     public bool IsPlayerDetected => isPlayerDetected;
     public bool IsIdleLocked => idleLockTimer > 0f;
+    public float HealthRatio => maxHealth > 0f ? currentHealth / maxHealth : 0f; //현재 체력 비율
+    public bool IsDying => isDying;
 
     //===================== 기본 로직 =====================
     protected virtual void Awake()
@@ -221,7 +224,7 @@ public class Monster : MonoBehaviour, IDamageable
     }
 
     //방향 전환
-    public void UpdateSpriteDirection()
+    public virtual void UpdateSpriteDirection()
     {
         if (target == null) return;
 
@@ -245,6 +248,15 @@ public class Monster : MonoBehaviour, IDamageable
     //도망용 메소드
     public virtual void ExecuteIdleLockMovement()
     {
+    }
+    
+    //체력 회복
+    public void Heal(float amount)
+    {
+        if (isDying || amount <= 0f) return;
+
+        //회복은 최대체력까지만 진행
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
     }
     
     //===================== 공격 로직 =====================

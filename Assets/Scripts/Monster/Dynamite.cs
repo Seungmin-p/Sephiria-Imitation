@@ -26,6 +26,7 @@ public class Dynamite : MonoBehaviour
     private float explosionDuration;
     private float flightDuration;
     private float flightTimer;
+    private float flightSpeed;
     private bool isExploded;
     private readonly HashSet<IDamageable> damagedTargets = new();
 
@@ -53,6 +54,9 @@ public class Dynamite : MonoBehaviour
         this.arcHeight = arcHeight;
         this.landingPointRatio = landingPointRatio;
         this.flightDuration = Mathf.Max(0.01f, flightDuration);
+        
+        //시간 내 목표 좌표까지 이동하기 위한 속도 확보
+        flightSpeed = Vector2.Distance(startPosition, finalTarget) / flightDuration;
         
         //Slide 이동용 데이터
         slideMovement = new Rigidbody2D.SlideMovement
@@ -90,17 +94,14 @@ public class Dynamite : MonoBehaviour
         flightTimer += Time.fixedDeltaTime;
         float progress = Mathf.Clamp01(flightTimer / flightDuration);
         
-        //비행 시간이 남아있고, 이동해야하는 거리가 남아있다면
-        if (progress < 1f && direction.sqrMagnitude > Mathf.Epsilon)
+        //비행 시간이 남아있다면
+        if (progress < 1f)
         {
-            //시간 내 목표 좌표까지 이동하기 위한 속도 확보
-            float speed = Vector2.Distance(startPosition, finalTarget) / flightDuration;
-
             //높이 보정을 제외한 그라운드 기준 좌표 사용
             slideMovement.SetStartPosition(groundPosition);
 
             //Slide 기반 이동처리 진행
-            Rigidbody2D.SlideResults result = rb.Slide(direction.normalized * speed, Time.fixedDeltaTime, slideMovement);
+            Rigidbody2D.SlideResults result = rb.Slide(direction.normalized * flightSpeed, Time.fixedDeltaTime, slideMovement);
             groundPosition = result.position;
         }
         
@@ -110,11 +111,11 @@ public class Dynamite : MonoBehaviour
         float arcProgress = Mathf.Clamp01(progress / Mathf.Clamp(landingPointRatio, 0.01f, 1f));
         
         //포물선 진행도에 따른 0 -> 최대높이 -> 0 포물선 높이 적용
-        ApplyHeight(4f * arcHeight * arcProgress * (1f - arcProgress));
+        ApplyPositionWithHeight(4f * arcHeight * arcProgress * (1f - arcProgress));
     }
 
     //높이 적용
-    private void ApplyHeight(float height)
+    private void ApplyPositionWithHeight(float height)
     {
         transform.position = new Vector3(groundPosition.x, groundPosition.y + height, transform.position.z);
         shadow.SetAirborneHeight(height);
@@ -126,7 +127,7 @@ public class Dynamite : MonoBehaviour
         if (isExploded) return;
 
         isExploded = true;
-        ApplyHeight(0f);
+        ApplyPositionWithHeight(0f);
         
         //본체 및 그림자 비활성화
         col.enabled = false;
