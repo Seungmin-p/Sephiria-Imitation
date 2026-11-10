@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -35,6 +36,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float dashAttackDamageMultiplier = 1f; //대시 공격 피해량 비율
     [SerializeField] private float strikeAttackDamageMultiplier = 1f; //특수 공격 피해량 비율
 
+    //이벤트
+    public event Action OnHealthChanged;
+    public event Action OnManaChanged;
+    
     private float currentHealth; //현재 HP
     private float currentMana; //현재 MP
 
@@ -78,26 +83,41 @@ public class PlayerStats : MonoBehaviour
     //HP 감소
     public void ReduceHealth(float amount)
     {
+        float previousHealth = currentHealth;
         currentHealth = Mathf.Max(currentHealth - amount, 0);
+        
+        if (previousHealth != currentHealth)
+            OnHealthChanged?.Invoke();
     }
 
     //HP 회복
     public void RecoverHealth(float amount)
     {
+        float previousHealth = currentHealth;
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        
+        if (previousHealth != currentHealth)
+            OnHealthChanged?.Invoke();
     }
 
     //MP 소모
     public void UseMana(float amount)
     {
+        float previousMana = currentMana;
         currentMana = Mathf.Max(currentMana - amount, 0);
-        Debug.Log($"마나 소모 : {amount}, 현재 마나 {currentMana}");
+        
+        if (previousMana != currentMana)
+            OnManaChanged?.Invoke();
     }
 
     //MP 회복
-    public void RecoverMana(float amount)
+    private void RecoverMana(float amount)
     {
+        float previousMana = currentMana;
         currentMana = Mathf.Min(currentMana + amount, maxMana);
+        
+        if (previousMana != currentMana)
+            OnManaChanged?.Invoke();
     }
     
     //MP 사용 가능 여부

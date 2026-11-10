@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashRechargeTime = 1f; //대시 쿨타임
     [SerializeField] int maxDashCount = 2; //최대 대시 회수
 
+    //이벤트
+    public event Action OnDashChanged;
+
     //기타 변수
     private Vector2 inputVec; //방향 입력값
 
@@ -27,10 +31,15 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D.SlideMovement slideMovement;
 
     public bool HasMoveInput => inputVec.sqrMagnitude > 0.01f;
+    public LayerMask CollisionMask => collisionMask;
+    
+    //대시 관련 프로퍼티
     public float DashDuration => dashDuration;
     public bool DashFinishedCondition => dashFinishedCondition;
     public bool DashActionTrigger => dashActionTrigger;
-    public LayerMask CollisionMask => collisionMask;
+    public int CurrentDashCount => currentDashCount;
+    public int MaxDashCount => maxDashCount;
+    public float DashRechargeProgress => dashRechargeTime > 0f ? Mathf.Clamp01(dashRechargeTimer / dashRechargeTime) : 1f;
 
     private void Awake()
     {
@@ -74,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
 
         currentDashCount--;
         dashActionTrigger = true;
+        
+        OnDashChanged?.Invoke();
     }
 
     //플레이어 움직임 처리 - 상태머신
@@ -113,8 +124,9 @@ public class PlayerMovement : MonoBehaviour
         {
             currentDashCount++;
             dashRechargeTimer = 0f;
-            Debug.Log($"대시 +1, 현재 대시 : {currentDashCount}");
         }
+        
+        OnDashChanged?.Invoke();
     }
     
     //이동 입력 초기화

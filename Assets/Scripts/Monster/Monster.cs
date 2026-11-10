@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using FSM;
@@ -310,6 +310,34 @@ public class Monster : MonoBehaviour, IDamageable
     {
     }
     
+    //보호막 관련 및 Hit 상태처리
+    protected virtual void ShieldAndHitReaction(bool hadShield)
+    {
+        //보호막이 있었던 경우
+        if (hadShield)
+        {
+            //보호막이 남아있으면 현재 행동 유지
+            if (HasShield) return;
+            
+            //머티리얼 변경
+            UpdateShieldMaterial();
+            
+            //보호막이 깨지면 현재 행동 취소 후 에어본
+            CancelCurrentAction();
+            isDown = true;
+            stateMachine.ChangeState(airborneState);
+            return;
+        }
+
+        //이미 에어본 중이라면 Hit 상태로 전환하지 않음
+        if (stateMachine.CurrentState == airborneState)
+            return;
+
+        //보호막이 없던 상태에서 피격되면 현재 행동 취소 후 Hit
+        CancelCurrentAction();
+        stateMachine.ChangeState(hitState);
+    }
+    
     //보호막 상태에 따른 머티리얼 적용
     protected void UpdateShieldMaterial()
     {
@@ -328,6 +356,12 @@ public class Monster : MonoBehaviour, IDamageable
         currentMoveDirection = ((Vector2)target.position - rb.position).normalized;
     }
     
+    //공격 준비 애니메이션 호출 시도
+    public virtual void PlayAttackPrepareAnimation()
+    {
+        PlayAnimation("AttackPrepare");
+    }
+
     //공격 애니메이션 호출 시도
     public virtual void PlayAttackAnimation()
     {
@@ -383,33 +417,8 @@ public class Monster : MonoBehaviour, IDamageable
             return result;
         }
 
-        //보호막이 있었던 경우
-        if (hadShield)
-        {
-            //보호막이 남아있으면 현재 행동 유지
-            if (HasShield)
-                return result;
-            
-            //머티리얼 변경
-            UpdateShieldMaterial();
-
-            //보호막이 깨지면 현재 행동 취소 후 에어본
-            CancelCurrentAction();
-            
-            isDown = true;
-            
-            stateMachine.ChangeState(airborneState);
-            return result;
-        }
-
-        //이미 에어본 중이라면 Hit 상태로 전환하지 않음
-        if (stateMachine.CurrentState == airborneState)
-            return result;
-
-        //보호막이 없던 상태에서 피격되면 현재 행동 취소 후 Hit
-        CancelCurrentAction();
-        stateMachine.ChangeState(hitState);
-
+        //보호막 관련, Hit 상태 전환 처리
+        ShieldAndHitReaction(hadShield);
         return result;
     }
     

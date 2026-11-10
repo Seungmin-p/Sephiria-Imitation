@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="MiniDashSlot" style="flex-grow: 0; width: 12px; height: 9px; flex-shrink: 0; background-image: none;">
+        <ui:VisualElement name="MiniDashFillMask" style="flex-grow: 1; width: 12px; height: 9px; overflow: hidden;">
+            <ui:VisualElement name="MiniDashIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprite/UI/DashHUDMini1.png?fileID=2800000&amp;guid=ffc37dc70e32cb24f88f61850366ed43&amp;type=3#DashHUDMini1&quot;); width: 12px; height: 9px;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

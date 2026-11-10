@@ -13,6 +13,9 @@ public class AttackWarningLine : MonoBehaviour
     //초기 크기, 색상
     private Vector3 originalScale;
     private Color originalColor;
+    
+    //피벗 중심 설정용
+    private bool centerOnPosition;
 
     private void Awake()
     {
@@ -23,12 +26,14 @@ public class AttackWarningLine : MonoBehaviour
     }
 
     //선 상태 설정
-    public void Setup(Vector3 startLocalPosition, Vector3 endLocalPosition, float startLength, float endLength)
+    public void Setup(Vector3 startLocalPosition, Vector3 endLocalPosition, float startLength, float endLength, bool centerOnPosition = false)
     {
         this.startLocalPosition = startLocalPosition;
         this.endLocalPosition = endLocalPosition;
         this.startLength = startLength;
         this.endLength = endLength;
+        
+        this.centerOnPosition = centerOnPosition;
 
         gameObject.SetActive(true);
         
@@ -41,11 +46,20 @@ public class AttackWarningLine : MonoBehaviour
     {
         progress = Mathf.Clamp01(progress);
 
-        transform.localPosition = Vector3.Lerp(startLocalPosition, endLocalPosition, progress);
+        Vector3 position = Vector3.Lerp(startLocalPosition, endLocalPosition, progress);
 
         Vector3 scale = originalScale;
         scale.y *= Mathf.Lerp(startLength, endLength, progress);
         transform.localScale = scale;
+        
+        //스프라이트의 Pivot이 아닌 실제 중심을 기준으로 배치
+        if (centerOnPosition)
+        {
+            Vector3 centerOffset = Vector3.Scale(spriteRenderer.sprite.bounds.center, scale);
+            position -= transform.localRotation * centerOffset;
+        }
+
+        transform.localPosition = position;
     }
     
     //진행도에 따른 Fade 처리

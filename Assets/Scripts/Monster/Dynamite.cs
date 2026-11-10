@@ -28,10 +28,13 @@ public class Dynamite : MonoBehaviour
     private float flightTimer;
     private float flightSpeed;
     private bool isExploded;
+    private bool isVerticalDrop;
+    private float verticalDropHeight;
     private readonly HashSet<IDamageable> damagedTargets = new();
 
     private Rigidbody2D.SlideMovement slideMovement;
 
+    //일반 포물선 로직용 초기화
     public void Initialize(
         Vector2 targetPosition,
         float explosionDuration,
@@ -42,22 +45,18 @@ public class Dynamite : MonoBehaviour
         Vector2 explosionSize,
         LayerMask damageLayer)
     {
-        this.explosionDamage = explosionDamage;
-        this.explosionDuration = explosionDuration;
-        explosionTimer = 0f;
-        this.explosionSize = explosionSize;
-        this.damageLayer = damageLayer;
-        
+        InitializeCommon(explosionDuration, flightDuration, explosionDamage, explosionSize, damageLayer);
+
         startPosition = transform.position;
         finalTarget = targetPosition;
         groundPosition = startPosition;
         this.arcHeight = arcHeight;
         this.landingPointRatio = landingPointRatio;
-        this.flightDuration = Mathf.Max(0.01f, flightDuration);
-        
+        isVerticalDrop = false;
+
         //시간 내 목표 좌표까지 이동하기 위한 속도 확보
-        flightSpeed = Vector2.Distance(startPosition, finalTarget) / flightDuration;
-        
+        flightSpeed = Vector2.Distance(startPosition, finalTarget) / this.flightDuration;
+
         //Slide 이동용 데이터
         slideMovement = new Rigidbody2D.SlideMovement
         {
@@ -70,7 +69,37 @@ public class Dynamite : MonoBehaviour
             useSimulationMove = false
         };
         slideMovement.SetLayerMask(obstacleLayer);
-        
+    }
+
+    //보스 공격 전용 수직 낙하 초기화
+    public void InitializeDrop(Vector2 targetPosition, float dropHeight, float dropDuration,
+        float explosionDelay, float explosionDamage, Vector2 explosionSize, LayerMask damageLayer)
+    {
+        float duration = Mathf.Max(0.01f, dropDuration);
+        InitializeCommon(duration + Mathf.Max(0f, explosionDelay), duration, explosionDamage, explosionSize, damageLayer);
+
+        groundPosition = targetPosition;
+        finalTarget = targetPosition;
+        verticalDropHeight = Mathf.Max(0f, dropHeight);
+        startPosition = targetPosition + Vector2.up * verticalDropHeight;
+        isVerticalDrop = true;
+
+        ApplyPositionWithHeight(verticalDropHeight);
+    }
+    
+    //공통 데이터 초기화
+    private void InitializeCommon(float explosionDuration, float flightDuration, float explosionDamage,
+        Vector2 explosionSize, LayerMask damageLayer)
+    {
+        this.explosionDamage = explosionDamage;
+        this.explosionDuration = explosionDuration;
+        this.explosionSize = explosionSize;
+        this.damageLayer = damageLayer;
+        this.flightDuration = Mathf.Max(0.01f, flightDuration);
+
+        explosionTimer = 0f;
+        flightTimer = 0f;
+
         animator.Play("Dynamite", 0, 0f);
     }
 
@@ -84,6 +113,15 @@ public class Dynamite : MonoBehaviour
         if (explosionTimer >= explosionDuration)
         {
             Explode();
+            return;
+        }
+
+        //수직 낙하 시 목표 지점을 기준으로 높이만 감소
+        if (isVerticalDrop)
+        {
+            flightTimer += Time.fixedDeltaTime;
+            float dropProgress = Mathf.Clamp01(flightTimer / flightDuration);
+            ApplyPositionWithHeight(verticalDropHeight * (1f - dropProgress));
             return;
         }
 
@@ -119,6 +157,10 @@ public class Dynamite : MonoBehaviour
     {
         transform.position = new Vector3(groundPosition.x, groundPosition.y + height, transform.position.z);
         shadow.SetAirborneHeight(height);
+        
+        //수직 낙하 시 그림자 페이드 처리
+        if (isVerticalDrop)
+            shadow.SetOpacity(1f - Mathf.Clamp01(height / Mathf.Max(0.01f, verticalDropHeight)));
     }
 
     //폭발 진행
@@ -141,7 +183,7 @@ public class Dynamite : MonoBehaviour
         ApplyExplosionDamage();
         
         //5초 후 오브젝트 삭제
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 3f);
     }
 
     private void ApplyExplosionDamage()

@@ -13,11 +13,13 @@ public class Shadow : MonoBehaviour
     [SerializeField]  SpriteRenderer spriteRenderer;
     
     private Vector3 originalLocalPosition;
+    private float originalAlpha;
 
     //초기 위치 저장 후, 그림자 적용
     private void Awake()
     {
         originalLocalPosition = transform.localPosition;
+        originalAlpha = spriteRenderer.color.a;
         ApplyShadow();
     }
     
@@ -44,7 +46,12 @@ public class Shadow : MonoBehaviour
     public void SetAirborneHeight(float height)
     {
         Vector3 position = transform.localPosition;
-        position.y = originalLocalPosition.y - height;
+        
+        //스케일 고려
+        float localHeight = transform.parent != null
+            ? transform.parent.InverseTransformVector(Vector3.up * height).y : height;
+        
+        position.y = originalLocalPosition.y - localHeight;
         transform.localPosition = position;
     }
 
@@ -54,5 +61,13 @@ public class Shadow : MonoBehaviour
         Vector3 position = transform.localPosition;
         position.y = originalLocalPosition.y;
         transform.localPosition = position;
+    }
+    
+    //그림자의 알파값 지정
+    public void SetOpacity(float opacity)
+    {
+        Color color = spriteRenderer.color;
+        color.a = originalAlpha * Mathf.Clamp01(opacity);
+        spriteRenderer.color = color;
     }
 }

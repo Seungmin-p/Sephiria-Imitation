@@ -1,4 +1,4 @@
-namespace FSM.MonsterStates
+﻿namespace FSM.MonsterStates
 {
     public class MonsterAttackPrepareState : MonsterState
     {
@@ -9,8 +9,8 @@ namespace FSM.MonsterStates
         public override void OnEnter()
         {
             //공격 시작 전 사전 작업
-            owner.PlayAnimation("AttackPrepare");
             owner.StartAttackPrepare();
+            owner.PlayAttackPrepareAnimation();
         }
 
         public override void OnFixedUpdate()

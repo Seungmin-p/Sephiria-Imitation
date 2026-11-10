@@ -14,6 +14,7 @@ public class MonsterAnimationEventReceiver : MonoBehaviour
         monster.ShowAttackWarning();
     }
 
+    //공격 애니메이션 종료
     public void AttackEnd()
     {
         monster.AttackEnd();
