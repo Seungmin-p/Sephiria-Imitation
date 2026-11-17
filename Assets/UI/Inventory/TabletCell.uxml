@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="TabletCell" style="flex-grow: 0; width: 36px; height: 36px; flex-shrink: 0; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/StoneTabletTooltip_Base%203.png?fileID=2800000&amp;guid=57f65e564f1dc454b9f031a608ce5b03&amp;type=3#StoneTabletTooltip_Base 3&quot;);">
+        <ui:VisualElement name="CellIcon" style="flex-grow: 1; -unity-background-scale-mode: scale-to-fit; position: absolute; top: 0; left: 0; bottom: 0; right: 0;"/>
+        <ui:Label text="+3" name="LevelLabel" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: middle-center; color: rgb(0, 255, 0); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); font-size: 20px; display: none;"/>
+    </ui:VisualElement>
+</ui:UXML>

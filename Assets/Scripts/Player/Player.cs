@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 using FSM;
 using FSMGraph;
 using FSM.PlayerStates;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +23,12 @@ public class Player : MonoBehaviour
     [Header("상태머신 그래프")]
     [SerializeField] FSMRuntimeGraph movementGraph;
     [SerializeField] FSMRuntimeGraph actionGraph;
+
+    [Header("마우스 커서")]
+    [SerializeField] MouseCursor mouseCursor;
+    
+    //UI 체크용
+    private readonly List<RaycastResult> uiRaycastResults = new();
     
     //플레이어 스탯, 버프디버프, 방향
     public PlayerStats Stats => playerStats;
@@ -111,6 +120,22 @@ public class Player : MonoBehaviour
         playerDeath.PrepareDeath(hitDirection);
         actionStateMachine.ChangeState(deathState);
     }
+    
+    //마우스가 UI 위에 있는지 확인
+    private bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null || Mouse.current == null) return false;
+
+        PointerEventData pointerData = new(EventSystem.current)
+        {
+            position = Mouse.current.position.ReadValue()
+        };
+
+        uiRaycastResults.Clear();
+        EventSystem.current.RaycastAll(pointerData, uiRaycastResults);
+
+        return uiRaycastResults.Count > 0;
+    }
 
     //=================================== 플레이어 이동 및 애니메이션 ===================================
     //플레이어 이동 입력 받기
@@ -176,6 +201,8 @@ public class Player : MonoBehaviour
     //플레이어 공격 입력 받기
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (context.performed && (mouseCursor.IsUIOpen || IsPointerOverUI())) return;
+        
         playerAttack.HandleAttackInput(context);
     }
 

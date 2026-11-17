@@ -56,14 +56,6 @@ public class PlayerMovement : MonoBehaviour
         };
 
         slideMovement.SetLayerMask(collisionMask);
-        
-        int environmentLayer = LayerMask.NameToLayer("Obstacle");
-        bool containsEnvironment = environmentLayer >= 0 && (collisionMask.value & (1 << environmentLayer)) != 0;
-
-        Debug.Log($"Obstacle Layer 번호 : {environmentLayer}");
-        Debug.Log($"Collision Mask에 Obstacle 포함 : {containsEnvironment}");
-        Debug.Log($"Collision Collider의 Rigidbody 일치 : {collisionCollider.attachedRigidbody == rb}");
-        Debug.Log($"실제 연결된 Collider : {collisionCollider.name}");
     }
 
     //플레이어 이동 입력 받기

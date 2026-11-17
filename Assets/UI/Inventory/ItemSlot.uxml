@@ -1,0 +1,42 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/ItemSlot.uss?fileID=7433441132597879392&amp;guid=dbd3cfc778c351144975f42b387096f1&amp;type=3#ItemSlot"/>
+    <ui:VisualElement name="Slot" style="flex-grow: 0; background-color: rgba(255, 255, 255, 0); width: 114px; height: 114px; margin-right: 0; margin-bottom: 0; background-image: none; margin-top: 0; margin-left: 0;">
+        <ui:VisualElement name="Slot-Border" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/InventorySlot0.png?fileID=2800000&amp;guid=d853cc99ea667fd4ab51ff38508d6028&amp;type=3#InventorySlot0&quot;);">
+            <ui:VisualElement name="Border-Hover" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/InventorySlot1.png?fileID=2800000&amp;guid=493b66dfb99a2e447beb981e3b4a38bf&amp;type=3#InventorySlot1&quot;);"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="Slot-Background" style="flex-grow: 1; position: absolute; left: 7px; top: 7px; padding-left: 0; padding-top: 0; bottom: 7px; right: 7px; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/InventorySlot_New0.png?fileID=2800000&amp;guid=9f24c265293c50b4aa383f45aa883ab1&amp;type=3#InventorySlot_New0&quot;);">
+            <Bindings>
+                <ui:DataBinding property="style.backgroundImage" data-source-path="BackgroundSprite" binding-mode="ToTarget"/>
+            </Bindings>
+        </ui:VisualElement>
+        <ui:VisualElement name="Item-Icon-Area" picking-mode="Ignore" style="flex-grow: 0; position: absolute; top: 10px; right: 10px; bottom: 10px; left: 10px; background-color: rgba(67, 67, 67, 0); background-image: none;">
+            <ui:VisualElement name="Item-Icon" style="flex-grow: 1; background-image: none; background-size: 100% 100%; -unity-background-scale-mode: scale-to-fit;">
+                <Bindings>
+                    <ui:DataBinding property="style.backgroundImage" data-source-path="IconSprite" binding-mode="ToTarget"/>
+                    <ui:DataBinding property="style.unityBackgroundImageTintColor" data-source-path="IconTint" binding-mode="ToTarget"/>
+                    <ui:DataBinding property="style.rotate" data-source-path="IconRotation" binding-mode="ToTarget"/>
+                </Bindings>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label text="0/0" name="Artifact-Level" parse-escape-sequences="false" picking-mode="Ignore" enabled="true" style="position: absolute; left: 14px; top: 12px; -unity-font-style: bold; font-size: 20px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: upper-left; display: none;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="LevelText" binding-mode="ToTarget"/>
+                <ui:DataBinding property="style.display" data-source-path="LevelVisible" binding-mode="ToTarget"/>
+                <ui:DataBinding property="style.color" data-source-path="LevelColor" binding-mode="ToTarget"/>
+            </Bindings>
+        </ui:Label>
+        <ui:Label text="+1" name="Slot-Level" parse-escape-sequences="false" picking-mode="Ignore" enabled="true" style="position: absolute; left: 14px; top: 12px; -unity-font-style: bold; font-size: 20px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 5px; padding-right: 0; padding-bottom: 0; padding-left: 5px; -unity-text-align: upper-left; display: none;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="SlotLevelChangeText" binding-mode="ToTarget"/>
+                <ui:DataBinding property="style.display" data-source-path="SlotLevelChangeVisible" binding-mode="ToTarget"/>
+                <ui:DataBinding property="style.color" data-source-path="SlotLevelChangeColor" binding-mode="ToTarget"/>
+            </Bindings>
+        </ui:Label>
+        <ui:Label text="1/5" name="Item-Count" enabled="true" picking-mode="Ignore" style="position: absolute; right: 12px; bottom: 12px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); -unity-text-align: upper-right; display: none; font-size: 20px;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="CountText" binding-mode="ToTarget"/>
+                <ui:DataBinding property="style.display" data-source-path="CountVisible" binding-mode="ToTarget"/>
+            </Bindings>
+        </ui:Label>
+    </ui:VisualElement>
+</ui:UXML>

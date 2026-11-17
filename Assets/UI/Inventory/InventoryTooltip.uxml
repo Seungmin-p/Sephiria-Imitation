@@ -1,0 +1,165 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/InventoryTooltip.uss?fileID=7433441132597879392&amp;guid=5c4209d83940c21468ad16062b044458&amp;type=3#InventoryTooltip"/>
+    <ui:VisualElement name="InventoryTooltip" style="width: 530px; flex-direction: column; position: absolute; top: 50%; left: 85%; translate: -50% 0%; height: auto;">
+        <ui:VisualElement name="ArtifactTooltip" style="flex-direction: column; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/ArtifactTooltip_Base.png?fileID=21300000&amp;guid=bcff45629aab7764eb7aa8cbe1c93261&amp;type=3#ArtifactTooltip_Base&quot;); -unity-background-scale-mode: stretch-to-fill; height: auto; flex-grow: 0; display: flex;">
+            <ui:VisualElement name="ArtifactHeader" style="flex-direction: row; min-height: 110px; height: 134px; position: relative; width: 100%; flex-shrink: 0;">
+                <ui:VisualElement name="ArtifactHeaderLeft" style="flex-grow: 0; position: absolute; left: 41px; right: 160px; bottom: 42px; top: 0;">
+                    <ui:VisualElement name="ArtifactStarArea" style="flex-direction: row; justify-content: center; position: absolute; left: 53%; translate: -50% 0%; align-items: center; top: -5px;"/>
+                    <ui:VisualElement name="ArtifactHeaderInfo" style="flex-grow: 1; justify-content: center; align-items: center; position: relative; top: 22px;">
+                        <ui:Label name="ArtifactName" text="아그마 투영검 190,191번" style="-unity-text-align: middle-center; white-space: normal; color: rgb(255, 210, 0); font-size: 28px; -unity-font-style: normal; -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="NameText" binding-mode="ToTarget"/>
+                            </Bindings>
+                        </ui:Label>
+                        <ui:VisualElement name="ArtifactSetInfo" style="flex-direction: row; align-items: center; top: 5px;">
+                            <ui:VisualElement name="ArtifactSetIcon" style="width: 28px; height: 28px; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/Icon/InventoryAccessory_New_01.png?fileID=2800000&amp;guid=f91d473be4e6bb54898010708488be83&amp;type=3#InventoryAccessory_New_01&quot;);">
+                                <Bindings>
+                                    <ui:DataBinding property="style.backgroundImage" data-source-path="ArtifactSetIconSprite" binding-mode="ToTarget"/>
+                                </Bindings>
+                            </ui:VisualElement>
+                            <ui:Label name="ArtifactSetName" text="견고" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(97, 217, 159); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); font-size: 20px; -unity-text-align: middle-left;">
+                                <Bindings>
+                                    <ui:DataBinding property="text" data-source-path="ArtifactSetNameText" binding-mode="ToTarget"/>
+                                </Bindings>
+                            </ui:Label>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="ArtifactHeaderRight" style="flex-grow: 0; width: 137px; right: 0; position: absolute; bottom: 0; top: 0;">
+                    <ui:VisualElement name="ArtifactIconFrame" style="width: auto; height: auto; justify-content: center; align-items: center; position: absolute; left: 24px; top: 28px; right: 31px; bottom: 25px;">
+                        <ui:VisualElement name="ArtifactIcon" style="position: relative; top: auto; left: auto; bottom: auto; right: auto; background-image: url(&quot;project://database/Assets/Sprite/Item/Artifact/BladeOfLight.png?fileID=2800000&amp;guid=bf152a5ac4cf98f4aa6df6539bba47e8&amp;type=3#BladeOfLight&quot;); -unity-background-scale-mode: scale-to-fit; translate: 0 0%; width: 100%; height: 100%;">
+                            <Bindings>
+                                <ui:DataBinding property="style.backgroundImage" data-source-path="IconSprite" binding-mode="ToTarget"/>
+                            </Bindings>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ArtifactBody" style="flex-direction: column; position: relative; width: 100%; top: auto; height: auto; flex-grow: 1; bottom: auto;">
+                <ui:VisualElement name="ArtifactRestrictionArea" style="flex-grow: 1; padding-left: 44px; padding-right: 44px; height: auto; background-image: none; width: auto; -unity-background-scale-mode: stretch-to-fill; background-size: contain; background-repeat: no-repeat no-repeat; -unity-background-image-tint-color: rgba(24, 24, 30, 0.83); background-position-x: center; padding-top: 20px; display: none;">
+                    <ui:VisualElement name="ArtifactRestriction" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/PanelInner_white.png?fileID=21300000&amp;guid=454af50942703b1479d598fa89df6a8d&amp;type=3#PanelInner_white&quot;); height: 70px; -unity-background-image-tint-color: rgba(24, 24, 30, 0.86);">
+                        <ui:Label text="&lt;제약&gt;" name="ArtifactRestrictionTitle" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; height: 50%; -unity-text-align: middle-center; color: rgb(255, 0, 0); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); font-size: 20px;"/>
+                        <ui:Label text="아티팩트 레벨은 0 이상이어야 함" name="ArtifactRestrictionText" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; height: 50%; -unity-text-align: middle-center; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); font-size: 20px;"/>
+                    </ui:VisualElement>
+                    <Bindings>
+                        <ui:DataBinding property="style.display" data-source-path="RestrictionVisible" binding-mode="ToTarget"/>
+                    </Bindings>
+                </ui:VisualElement>
+                <ui:VisualElement name="ArtifactBodyInfo" style="flex-grow: 1; left: auto; right: auto; position: relative; width: 442px; padding-bottom: 42px; padding-left: 44px;">
+                    <ui:Label name="ArtifactUniqueLabel" text="[고유]" style="color: rgb(255, 184, 109); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); -unity-font-style: normal; font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 15px; padding-right: 0; padding-bottom: 0; padding-left: 0; opacity: 1;">
+                        <Bindings>
+                            <ui:DataBinding property="style.opacity" data-source-path="ArtifactEffectOpacity" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:Label>
+                    <ui:VisualElement name="ArtifactEffectArea" style="flex-direction: column;">
+                        <ui:Label text="-물리 피해 (아이콘) +2(색상)" name="Label" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 20px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="EffectDescriptionText" binding-mode="ToTarget"/>
+                            </Bindings>
+                        </ui:Label>
+                        <Bindings>
+                            <ui:DataBinding property="style.opacity" data-source-path="ArtifactEffectOpacity" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ArtifactDivider" style="height: 2px; background-color: rgb(55, 54, 68); margin-top: 10px; margin-bottom: 10px;"/>
+                    <ui:Label name="ArtifactRarity" text="희귀 아티팩트" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(160, 160, 160); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); font-size: 20px;">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="ArtifactRarityText" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Label name="ArtifactSubDescription" text="190번째. 형체는 검과 흡사하다. 에너지는 대칭적인 형태로만 드러나며, 칼날 자체는 나타나지 않는다. -아그마" enable-rich-text="true" style="white-space: normal; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); width: 390px; color: rgb(144, 204, 203); font-size: 20px;">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="SubDescriptionText" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="PotionTooltip" style="display: none; flex-direction: column; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/PotionTooltip_Base.png?fileID=21300000&amp;guid=22771e00caeb396429bcc250b351c146&amp;type=3#PotionTooltip_Base&quot;); -unity-background-scale-mode: stretch-to-fill; background-size: 100% 100%; flex-shrink: 1; flex-grow: 0;">
+            <ui:VisualElement name="PotionHeader" style="flex-direction: row; height: 128px;">
+                <ui:VisualElement name="PotionHeaderLeft" style="flex-grow: 1; position: absolute; left: 0; top: 0; bottom: 0; right: 128px;">
+                    <ui:VisualElement name="PotionHeaderInfo" style="flex-grow: 1; justify-content: center; align-items: center; top: auto; left: auto; padding-left: 31px; padding-top: 22px; padding-bottom: 19px; padding-right: 10px;">
+                        <ui:Label name="PotionName" text="재생의 포션" style="-unity-text-align: middle-center; white-space: normal; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; left: auto; top: auto; -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); font-size: 30px; color: rgb(255, 255, 255);">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="NameText" binding-mode="ToTarget"/>
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="PotionHeaderRight" style="flex-grow: 1; position: absolute; right: 0; top: 0; bottom: 0; left: auto; width: 128px;">
+                    <ui:VisualElement name="PotionIconFrame" style="width: auto; height: auto; justify-content: center; align-items: center; position: absolute; left: 19px; flex-shrink: 0; right: 28px; top: 25px; bottom: 22px;">
+                        <ui:VisualElement name="PotionIcon" style="width: 50%; height: 50%; background-image: url(&quot;project://database/Assets/Sprite/Item/Potion/RedPotion1.png?fileID=2800000&amp;guid=692b3b9da6b9a164baba4d699168b13b&amp;type=3#RedPotion1&quot;); -unity-background-scale-mode: scale-to-fit;">
+                            <Bindings>
+                                <ui:DataBinding property="style.backgroundImage" data-source-path="IconSprite" binding-mode="ToTarget"/>
+                            </Bindings>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="PotionBody" style="flex-direction: column; flex-grow: 1; width: 100%; height: auto;">
+                <ui:VisualElement name="PotionBodyInfo" style="flex-grow: 1; left: auto; width: 442px; padding-left: 40px; padding-bottom: 35px;">
+                    <ui:Label name="PotionEffectDescription" text="- HP(하트) 20% 회복&#10;- 소지 상한: 5개" enable-rich-text="true" style="white-space: normal; flex-grow: 0; margin-top: 17px; margin-right: 0; margin-bottom: 15px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 255, 255); font-size: 20px; -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;);">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="EffectDescriptionText" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Label name="PotionCategory" text="[포션]" style="margin-top: 0; margin-right: 0; margin-bottom: 6px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(160, 160, 160); font-size: 20px; -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;);"/>
+                    <ui:Label name="PotionSubDescription" text="체력을 회복한다." enable-rich-text="true" style="white-space: normal; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; color: rgb(144, 204, 203); font-size: 20px; -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;);">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="SubDescriptionText" binding-mode="ToTarget"/>
+                        </Bindings>
+                    </ui:Label>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="TabletTooltip" style="display: none; flex-direction: column; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/StoneTabletTooltip_Base.png?fileID=21300000&amp;guid=5d9edc8eca67220459be3aa7ab3421cc&amp;type=3#StoneTabletTooltip_Base&quot;);">
+            <ui:VisualElement name="TabletHeader" style="flex-direction: row; width: 100%; height: 134px;">
+                <ui:VisualElement name="TabletHeaderLeft" style="flex-grow: 1; position: absolute; top: 0; left: 0; bottom: 0; right: 128px;">
+                    <ui:VisualElement name="TabletHeaderInfo" style="flex-grow: 1; justify-content: center; align-items: center; padding-left: 37px; padding-top: 35px; padding-bottom: 30px; padding-right: 13px;">
+                        <ui:Label name="TabletName" text="단절" style="-unity-text-align: middle-center; white-space: normal; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 210, 0); font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;);">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="NameText" binding-mode="ToTarget"/>
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="TabletHeaderRight" style="flex-grow: 1; position: absolute; right: 0; top: 0; bottom: 0; width: 128px;">
+                    <ui:VisualElement name="TabletIconFrame" style="justify-content: center; align-items: center; position: absolute; top: 28px; left: 16px; right: 31px; bottom: 25px;">
+                        <ui:VisualElement name="TabletIcon" style="width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/Sprite/Item/Tablet/StoneTablet_h_P3M5.png?fileID=2800000&amp;guid=797c314a5367c2d4598db100e419dd89&amp;type=3#StoneTablet_h_P3M5&quot;); -unity-background-scale-mode: scale-to-fit;">
+                            <Bindings>
+                                <ui:DataBinding property="style.backgroundImage" data-source-path="IconSprite" binding-mode="ToTarget"/>
+                                <ui:DataBinding property="style.rotate" data-source-path="IconRotation" binding-mode="ToTarget"/>
+                            </Bindings>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="TabletBody" style="flex-direction: column; flex-grow: 1;">
+                <ui:VisualElement name="TabletBodyInfo" style="flex-grow: 1; left: auto; padding-left: 36px; padding-top: 9px; padding-right: 35px; padding-bottom: 31px; -unity-slice-right: 0;">
+                    <ui:VisualElement name="TabletBodyVisual" style="flex-grow: 0; position: relative; width: auto; right: auto; left: auto; margin-bottom: 5px;">
+                        <ui:VisualElement name="Top" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/StoneTabletTooltip_Base%205.png?fileID=-4172109237505912739&amp;guid=6e25a7f70a4914044b4f4d5d3ff46e0b&amp;type=3#StoneTabletTooltip_Base 5_0&quot;); height: 42px; -unity-background-scale-mode: scale-to-fit; background-repeat: repeat no-repeat; background-size: 309px 100%; background-position-x: left 0;"/>
+                        <ui:VisualElement name="Middle" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="Left" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/StoneTabletTooltip_Base%204.png?fileID=2800000&amp;guid=5a84927834d913147990ae9a29b997a6&amp;type=3#StoneTabletTooltip_Base 4&quot;); width: 42px; height: auto; background-repeat: no-repeat repeat; -unity-background-scale-mode: scale-and-crop;"/>
+                            <ui:VisualElement name="TabletExampleArea" style="flex-grow: 1; width: auto; align-content: flex-start; justify-content: center; align-items: center; margin-top: 21px; margin-bottom: 21px;">
+                                <ui:VisualElement name="TabletPreviewGrid" style="flex-grow: 0; flex-shrink: 0; justify-content: center; align-content: center;"/>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="Right" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/StoneTabletTooltip_Base%204.png?fileID=2800000&amp;guid=5a84927834d913147990ae9a29b997a6&amp;type=3#StoneTabletTooltip_Base 4&quot;); width: 42px; height: auto; background-repeat: no-repeat repeat; -unity-background-scale-mode: scale-and-crop;"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Bottom" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/StoneTabletTooltip_Base%205.png?fileID=-4172109237505912739&amp;guid=6e25a7f70a4914044b4f4d5d3ff46e0b&amp;type=3#StoneTabletTooltip_Base 5_0&quot;); height: 42px; -unity-background-scale-mode: scale-to-fit; background-repeat: repeat no-repeat; background-size: 309px 100%; background-position-x: left 0;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="TabletIncreaseRow" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/StoneTabletTooltip_List.png?fileID=2800000&amp;guid=6408e8f581bbdb5458ed87ab7011bee3&amp;type=3#StoneTabletTooltip_List&quot;); height: 48px; -unity-background-scale-mode: stretch-to-fill; background-position-x: left 0; background-repeat: no-repeat no-repeat; width: auto; background-size: contain; background-position-y: center; flex-shrink: 0; flex-direction: row; -unity-slice-left: 17; -unity-slice-right: 10; -unity-slice-scale: 3px; margin-bottom: 4px;">
+                        <ui:Label text="+" name="IncreaseIcon" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 1px; height: 48px; width: 48px; -unity-text-align: middle-center; color: rgb(0, 255, 0); font-size: 14px; -unity-font-definition: url(&quot;project://database/Assets/Font/x10y12pxDenkiChipHangul.ttf?fileID=12800000&amp;guid=e1de80db83966584ab1b56b70ca9f544&amp;type=3#x10y12pxDenkiChipHangul&quot;); -unity-font-style: normal;"/>
+                        <ui:Label text="아티팩트 레벨 증가" name="IncreaseText" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: auto; height: 100%; -unity-text-align: middle-center; font-size: 22px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); flex-grow: 1;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="TabletDecreaseRow" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/StoneTabletTooltip_List.png?fileID=2800000&amp;guid=6408e8f581bbdb5458ed87ab7011bee3&amp;type=3#StoneTabletTooltip_List&quot;); height: 48px; -unity-background-scale-mode: stretch-to-fill; background-position-x: left 0; background-repeat: no-repeat no-repeat; width: auto; background-size: contain; background-position-y: center; flex-shrink: 0; flex-direction: row; -unity-slice-left: 17; -unity-slice-right: 10; -unity-slice-scale: 3px; margin-bottom: 4px;">
+                        <ui:Label text="-" name="DecreaseIcon" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 1px; padding-right: 0; padding-bottom: 0; padding-left: 2px; height: 48px; width: 48px; -unity-text-align: middle-center; color: rgb(255, 0, 0); font-size: 20px; -unity-font-definition: url(&quot;project://database/Assets/Font/x10y12pxDenkiChipHangul.ttf?fileID=12800000&amp;guid=e1de80db83966584ab1b56b70ca9f544&amp;type=3#x10y12pxDenkiChipHangul&quot;); -unity-font-style: normal;"/>
+                        <ui:Label text="아티팩트 레벨 감소" name="DecreaseText" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: auto; height: 100%; -unity-text-align: middle-center; font-size: 22px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); flex-grow: 1;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="TabletRotationDescription" style="flex-grow: 1; height: 48px; background-image: url(&quot;project://database/Assets/Sprite/UI/Inventory/StoneTabletTooltip_FlexibleList.png?fileID=2800000&amp;guid=628da85a925802a4a816919f0ba5060b&amp;type=3#StoneTabletTooltip_FlexibleList&quot;); -unity-slice-left: 8; -unity-slice-right: 5; -unity-slice-scale: 3px; margin-bottom: 4px;">
+                        <ui:Label text="회전 불가" name="RotationtText" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 100%; height: 100%; font-size: 22px; color: rgb(255, 0, 0); -unity-font-definition: url(&quot;project://database/Assets/Font/Galmuri9.ttf?fileID=12800000&amp;guid=f20e4956ee312394d8429d72de8486b6&amp;type=3#Galmuri9&quot;); -unity-text-align: middle-center;"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

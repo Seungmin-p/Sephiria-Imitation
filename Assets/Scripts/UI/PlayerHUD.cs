@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using UIImage = UnityEngine.UI.Image;
+using MyInventory;
 
 public class PlayerHUD : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] PlayerStats playerStats;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] VisualTreeAsset dashSlotTemplate;
+    [SerializeField] InventoryView inventoryView;
     
     [Header("아이콘 이미지")]
     [SerializeField] Texture2D inventoryDefaultTexture;
@@ -72,6 +74,9 @@ public class PlayerHUD : MonoBehaviour
 
         statsIcon.RegisterCallback<PointerEnterEvent>(OnIconEnter);
         statsIcon.RegisterCallback<PointerLeaveEvent>(OnIconLeave);
+        
+        //인벤토리 아이콘 클릭
+        inventoryIcon.RegisterCallback<ClickEvent>(OnInventoryClick);
 
         //이벤트 구독
         playerStats.OnHealthChanged += UpdateHealth;
@@ -86,11 +91,12 @@ public class PlayerHUD : MonoBehaviour
         playerStats.OnManaChanged -= UpdateMana;
         playerMovement.OnDashChanged -= UpdateDash;
         
-        //아이콘 호버 이벤트 해제
+        //아이콘 이벤트 해제
         inventoryIcon.UnregisterCallback<PointerEnterEvent>(OnIconEnter);
         inventoryIcon.UnregisterCallback<PointerLeaveEvent>(OnIconLeave);
         statsIcon.UnregisterCallback<PointerEnterEvent>(OnIconEnter);
         statsIcon.UnregisterCallback<PointerLeaveEvent>(OnIconLeave);
+        inventoryIcon.UnregisterCallback<ClickEvent>(OnInventoryClick);
 
         //아이콘 기본 이미지 복구
         inventoryIcon.style.backgroundImage = inventoryDefaultTexture;
@@ -193,5 +199,11 @@ public class PlayerHUD : MonoBehaviour
             inventoryIcon.style.backgroundImage = new StyleBackground(inventoryDefaultTexture);
         else if (evt.currentTarget == statsIcon)
             statsIcon.style.backgroundImage = new StyleBackground(statsDefaultTexture);
+    }
+    
+    //인벤토리 아이콘 클릭
+    private void OnInventoryClick(ClickEvent evt)
+    {
+        inventoryView.ToggleWindow();
     }
 }

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ee08c99f6f0f4409ce3ce6eea80843, type: 3}
+  m_Name: Item_Artifact_BladeOfLight
+  m_EditorClassIdentifier: Assembly-CSharp::MyInventory.ArtifactItemData
+  _id: 1000
+  _name: "\uC544\uADF8\uB9C8 \uD22C\uC601\uAC80 190, 191\uBC88"
+  _tooltip: 
+  _iconSprite: {fileID: 21300000, guid: bf152a5ac4cf98f4aa6df6539bba47e8, type: 3}
+  _rarity: 2
+  _iconScale: 1
+  _setType: 1
+  _levels:
+  - _modifiers:
+    - _type: 3
+      _value: 2
+  - _modifiers:
+    - _type: 3
+      _value: 3
+  - _modifiers:
+    - _type: 3
+      _value: 4
+  - _modifiers:
+    - _type: 3
+      _value: 6
+  - _modifiers:
+    - _type: 3
+      _value: 8
+  - _modifiers:
+    - _type: 3
+      _value: 10
+  - _modifiers:
+    - _type: 3
+      _value: 12
+  - _modifiers:
+    - _type: 3
+      _value: 14
+  _effectDescription: '{PhysicalAttackPower} {Value}'
+  _subDescription: "190\uBC88\uC9F8. \uD615\uCCB4\uB294 \uAC80\uACFC \uD761\uC0AC\uD558\uB2E4.
+    \uC5D0\uB108\uC9C0\uB294 \uB300\uCE6D\uC801\uC778 \uD615\uD0DC\uB85C\uB9CC \uB4DC\uB7EC\uB098\uBA70,
+    \uCE7C\uB0A0 \uC790\uCCB4\uB294 \uB098\uD0C0\uB098\uC9C0 \uC54A\uB294\uB2E4.
+    -\uC544\uADF8\uB9C8"

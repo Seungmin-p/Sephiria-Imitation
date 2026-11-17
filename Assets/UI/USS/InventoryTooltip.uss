@@ -1,0 +1,13 @@
+/* 아티팩트 별 기본 스타일 */
+.artifact-star {
+    width: 33px;
+    height: 33px;
+    flex-shrink: 0;
+    background-image: url("/Assets/Sprite/UI/Inventory/Tier_disable.png");
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+/* 활성화된 아티팩트 별 */
+.artifact-star.artifact-star--active {
+    background-image: url("/Assets/Sprite/UI/Inventory/Tier.png");
+}
