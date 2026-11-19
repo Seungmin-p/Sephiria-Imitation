@@ -12,6 +12,7 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] VisualTreeAsset dashSlotTemplate;
     [SerializeField] InventoryView inventoryView;
+    [SerializeField] StatusUI statusUI;
     
     [Header("아이콘 이미지")]
     [SerializeField] Texture2D inventoryDefaultTexture;
@@ -77,6 +78,9 @@ public class PlayerHUD : MonoBehaviour
         
         //인벤토리 아이콘 클릭
         inventoryIcon.RegisterCallback<ClickEvent>(OnInventoryClick);
+        
+        //스탯 아이콘 클릭
+        statsIcon.RegisterCallback<ClickEvent>(OnStatusClick);
 
         //이벤트 구독
         playerStats.OnHealthChanged += UpdateHealth;
@@ -97,6 +101,7 @@ public class PlayerHUD : MonoBehaviour
         statsIcon.UnregisterCallback<PointerEnterEvent>(OnIconEnter);
         statsIcon.UnregisterCallback<PointerLeaveEvent>(OnIconLeave);
         inventoryIcon.UnregisterCallback<ClickEvent>(OnInventoryClick);
+        statsIcon.UnregisterCallback<ClickEvent>(OnStatusClick);
 
         //아이콘 기본 이미지 복구
         inventoryIcon.style.backgroundImage = inventoryDefaultTexture;
@@ -205,5 +210,11 @@ public class PlayerHUD : MonoBehaviour
     private void OnInventoryClick(ClickEvent evt)
     {
         inventoryView.ToggleWindow();
+    }
+    
+    //스탯 아이콘 클릭
+    private void OnStatusClick(ClickEvent evt)
+    {
+        statusUI?.ToggleWindow();
     }
 }

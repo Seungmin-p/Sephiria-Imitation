@@ -19,7 +19,7 @@ public class PlayerAttackDamage : MonoBehaviour
         bool isCritical = IsCritical();
 
         if (isCritical)
-            damage *= player.Stats.CriticalDamage;
+            damage += (damage * player.Stats.CriticalDamage);
 
         return new AttackData(damage, attackDirection, isCritical, ElementType.Physical, DamageSource.Player);
     }
@@ -27,12 +27,12 @@ public class PlayerAttackDamage : MonoBehaviour
     //물리 기반 데미지 공식
     private float CalculatePhysicalDamage(int attackCombo)
     {
-        float damage = player.Stats.PhysicalAttackPower;
+        float damage = player.Stats.PhysicalDamage;
 
         damage *= GetAttackCoefficient(attackCombo);
         damage *= player.Stats.WeaponDamageMultiplier;
         damage *= GetAttackTypeMultiplier();
-        damage *= player.Stats.AllDamageMultiplier;
+        damage *= player.Stats.FinalDamage;
 
         return damage;
     }

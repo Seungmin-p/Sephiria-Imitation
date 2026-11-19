@@ -15,7 +15,6 @@ namespace MyInventory
         [Header("기본 아이템 데이터")]
         [SerializeField] int _id;
         [SerializeField] string _name; //아이템 이름
-        [SerializeField, TextArea(3, 5)] string _tooltip; //아이템 설명
         [SerializeField] Sprite _iconSprite; //아이템 아이콘
         [SerializeField] ItemRarity _rarity; //아이템 등급
         
@@ -24,7 +23,6 @@ namespace MyInventory
         
         public int ID => _id;
         public string Name => _name;
-        public string Tooltip => _tooltip;
         public Sprite IconSprite => _iconSprite;
         public ItemRarity Rarity => _rarity;
         public float IconScale => _iconScale;

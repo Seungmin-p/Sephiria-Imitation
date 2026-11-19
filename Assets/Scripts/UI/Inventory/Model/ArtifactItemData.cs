@@ -8,6 +8,7 @@ namespace MyInventory
     public enum ArtifactSetType
     {
         None,
+        Robust,
         Ember,
         Sturdy,
         Shadow,
@@ -20,10 +21,10 @@ namespace MyInventory
         MaxHealth,
         MaxMana,
         ManaRegen,
-        PhysicalAttackPower,
-        FireAttackPower,
-        IceAttackPower,
-        ElectricAttackPower,
+        PhysicalDamage,
+        FlameDamage,
+        IceDamage,
+        LightningDamage,
         Defense,
         Evasion,
         CriticalChance,

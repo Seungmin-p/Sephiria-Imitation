@@ -385,6 +385,54 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MyInventory.UIToolkit.InventoryBootstrapper, Assembly-CSharp
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 913d9631-ba67-4eaf-bdb9-2dbc15876f86
+    m_ActionName: 'Player/Inventory[/Keyboard/i]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MyInventory.InventoryBootstrapper, Assembly-CSharp
+        m_MethodName: OnRotateTablet
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c645aeef-dafc-47f4-b06d-4828c82359de
+    m_ActionName: 'Player/RotateTablet[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: StatusUI, Assembly-CSharp
+        m_MethodName: OnStatus
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b689cfc7-9df5-4cc5-9b43-87572481a18b
+    m_ActionName: 'Player/Status[/Keyboard/c]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -435,6 +483,7 @@ MonoBehaviour:
   statusEffect: {fileID: 5853866533121677591}
   movementGraph: {fileID: 2841676755933307327, guid: 558eb3cecc40ddb48a821ae06091038e, type: 3}
   actionGraph: {fileID: 2841676755933307327, guid: 4c232cf58244f924198420a464989733, type: 3}
+  mouseCursor: {fileID: 0}
 --- !u!114 &7915063328097749707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,10 +499,10 @@ MonoBehaviour:
   maxHealth: 100
   maxMana: 50
   manaRegen: 3
-  physicalAttackPower: 20
-  fireAttackPower: 0
-  iceAttackPower: 0
-  electricAttackPower: 0
+  physicalDamage: 20
+  flameDamage: 20
+  iceDamage: 20
+  lightningDamage: 20
   defense: 0
   evasion: 0
   hitInvincibilityDuration: 0.2
@@ -463,7 +512,7 @@ MonoBehaviour:
   attackSpeedMultiplier: 1
   baseMoveSpeed: 5
   moveSpeedMultiplier: 1
-  allDamageMultiplier: 1
+  finalDamage: 1
   weaponDamageMultiplier: 1
   normalAttackDamageMultiplier: 1
   dashAttackDamageMultiplier: 1

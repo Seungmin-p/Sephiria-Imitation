@@ -72,12 +72,171 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   playerMovement: {fileID: 0}
   dashSlotTemplate: {fileID: 9197481963319205126, guid: a9ff46151640cd24eb7dda7f570e6cbe, type: 3}
+  inventoryView: {fileID: 1512436808315432284}
+  statusUI: {fileID: 1260227553786134260}
   inventoryDefaultTexture: {fileID: 2800000, guid: 9623ce0af8df1dd478436ca542a4f054, type: 3}
   inventoryHoverTexture: {fileID: 2800000, guid: 4e8c78024e30b324db73ecd60b643e40, type: 3}
   statsDefaultTexture: {fileID: 2800000, guid: 6fe08e4dabc0b4a42945145133e70ecf, type: 3}
   statsHoverTexture: {fileID: 2800000, guid: 9d0243565ba871c478609925c7c7f6a9, type: 3}
   miniDashBackground: {fileID: 0}
   miniDashSlotPrefab: {fileID: 7429902591922858057, guid: 70c9ad76e31c5e94f889547d23f65732, type: 3}
+--- !u!1 &1382755197863861660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3140793124024240666}
+  - component: {fileID: 3537457566265611689}
+  - component: {fileID: 1512436808315432284}
+  m_Layer: 0
+  m_Name: InventoryUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3140793124024240666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382755197863861660}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2480463278239392291}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3537457566265611689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382755197863861660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 99b35505d3211174699b5f3428ea94cd, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 13aa55f3caf011d48aae33049e1e45a4, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &1512436808315432284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382755197863861660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b3c19096a147744b98f3e82ce9e28d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyInventory.UIToolkit.InventoryView
+  _slotTemplate: {fileID: 9197481963319205126, guid: 8d996e4b17acd3a4abd54b7531c58a09, type: 3}
+  _tooltipTemplate: {fileID: 9197481963319205126, guid: 1e48842a0501b8947bac4fc2cc925746, type: 3}
+  _tabletCellTemplate: {fileID: 9197481963319205126, guid: e3b8cab3dad664241a9fbdbd5432c8b9, type: 3}
+  _mouseCursor: {fileID: 511562917142315286}
+  _slotBackgrounds:
+  - {fileID: 2800000, guid: 9f24c265293c50b4aa383f45aa883ab1, type: 3}
+  - {fileID: 2800000, guid: 072bc342712a7094ab536dbf08a804f3, type: 3}
+  - {fileID: 2800000, guid: 759f461ca4365a14db44b146176449c3, type: 3}
+  - {fileID: 2800000, guid: b6d77fa97a2563e489f789bde7852234, type: 3}
+  - {fileID: 2800000, guid: 5f25750a31109dc47bd490489476449d, type: 3}
+  _tabletSlotBackground: {fileID: 2800000, guid: 58b39071ee8e0da4da82f2940985bccd, type: 3}
+  _artifactSetDisplays:
+  - _setType: 1
+    _name: "\uACAC\uACE0"
+    _icon: {fileID: 21300000, guid: f91d473be4e6bb54898010708488be83, type: 3}
+  _effectDisplays:
+  - _type: 3
+    _displayName: "\uBB3C\uB9AC \uD53C\uD574"
+    _spriteName: PhysicalDamage
+    _textColor: {r: 1, g: 1, b: 1, a: 1}
+    _valueType: 0
+  - _type: 0
+    _displayName: "\uCD5C\uB300 HP"
+    _spriteName: HP
+    _textColor: {r: 1, g: 1, b: 1, a: 1}
+    _valueType: 0
+  - _type: 1
+    _displayName: "\uCD5C\uB300 MP"
+    _spriteName: MP
+    _textColor: {r: 1, g: 1, b: 1, a: 1}
+    _valueType: 0
+  _potionEffectDisplays:
+  - _type: 0
+    _displayName: HP
+    _spriteName: HP
+    _textColor: {r: 1, g: 0, b: 0, a: 1}
+    _valueType: 1
+  _columnCount: 6
+--- !u!1 &2112396512570612145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5909323296482689579}
+  - component: {fileID: 3848863784464525365}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5909323296482689579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112396512570612145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2480463278239392291}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3848863784464525365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112396512570612145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384dcdf12ed199e4680eee9f24e66a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyInventory.UIToolkit.InventoryBootstrapper
+  _initialCapacity: 24
+  _maxCapacity: 24
+  _inventoryView: {fileID: 1512436808315432284}
+  _itemDatabase:
+  - {fileID: 11400000, guid: cde3e23196aca904d9216c3cf8f60ec9, type: 2}
+  - {fileID: 11400000, guid: c299c6cfdfb7821438e4ca47e71eb387, type: 2}
+  - {fileID: 11400000, guid: fe7004d04fdeff84bad405f775328974, type: 2}
 --- !u!1 &2723121804271541367
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,6 +325,9 @@ Transform:
   - {fileID: 3356717179341407926}
   - {fileID: 2251285287051621543}
   - {fileID: 3132096857501764214}
+  - {fileID: 3140793124024240666}
+  - {fileID: 5909323296482689579}
+  - {fileID: 6202898782825861586}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &511562917142315286
@@ -181,6 +343,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseCursor
   cursorTexture: {fileID: 2800000, guid: f54acc4d70b1ef44b879f92e87fb1a64, type: 3}
+  uiCursorTexture: {fileID: 2800000, guid: 5d1a1756c671e894583a84fa3121da0f, type: 3}
+  uiClickFrames:
+  - {fileID: 2800000, guid: 5d1a1756c671e894583a84fa3121da0f, type: 3}
+  - {fileID: 2800000, guid: 660a22c0754942240bab1655da5896db, type: 3}
+  - {fileID: 2800000, guid: cdf649e1fc7b88648a2cd50aef649d0e, type: 3}
+  - {fileID: 2800000, guid: 436b410c4eb1754418baf9d2710408df, type: 3}
+  - {fileID: 2800000, guid: 5541fa9eb1899864ab1dd37219d86156, type: 3}
+  - {fileID: 2800000, guid: ad84888f016fe9a4bbe50502c1c2c761, type: 3}
+  - {fileID: 2800000, guid: 4d347322ea01ef5439867197efb2daf5, type: 3}
+  clickFrameDuration: 0.05
 --- !u!1 &4371499670806832095
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,3 +429,73 @@ MonoBehaviour:
     positionOffset: 0
     rotateWithDirection: 0
     angleOffset: 0
+--- !u!1 &9151323858436999976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6202898782825861586}
+  - component: {fileID: 6859573546124472718}
+  - component: {fileID: 1260227553786134260}
+  m_Layer: 0
+  m_Name: StatusUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6202898782825861586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151323858436999976}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2480463278239392291}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6859573546124472718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151323858436999976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 99b35505d3211174699b5f3428ea94cd, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 5887feeb0b78c5247b2135e10276c834, type: 3}
+  m_SortingOrder: 10
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &1260227553786134260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151323858436999976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cd447016df68e409b6dbd371871e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusUI
+  playerStats: {fileID: 0}
+  mouseCursor: {fileID: 511562917142315286}
